@@ -1,9 +1,11 @@
 const express = require('express');
-const list = require('./routes/books');
 const app = express();
 const PORT = 3000;
+const booksRouter = require('./routes/books');
+const bodyParser = require('body-parser');
 
-app.use('/routes/books', list);
+app.use(bodyParser.json());
+app.use('/api', booksRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
